@@ -4,27 +4,22 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { selectChannel, fetchMessages } from '../actions/index';
+import { Link } from 'react-router-dom';
 
 class ChannelList extends Component {
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.selectedChannel !== this.props.selectedChannel) {
-      this.props.fetchMessages(nextProps.selectedChannel);
-    }
-  }
-
   handleClick = (channel) => {
     this.props.selectChannel(channel);
+    this.props.fetchMessages(channel);
   }
 
   renderChannel = (channel) => {
     return (
       <li
         key={channel}
-        className={channel === this.props.selectedChannel ? 'active' : null}
+        className={channel === this.props.selectedChannel ? 'channel active' : "channel"}
         onClick={() => this.handleClick(channel)}
-        role="presentation"
       >
-        #{channel}
+        <Link to={`/channels/${channel}`}># {channel}</Link>
       </li>
     );
   }
@@ -32,7 +27,7 @@ class ChannelList extends Component {
   render() {
     return (
       <div className="channels-container">
-        <span>Redux Chat</span>
+        <span>Rails + Redux Chat</span>
         <ul>
           {this.props.channels.map(this.renderChannel)}
         </ul>
@@ -43,8 +38,7 @@ class ChannelList extends Component {
 
 function mapStateToProps(state) {
   return {
-    channels: state.channels,
-    selectedChannel: state.selectedChannel
+    channels: state.channels
   };
 }
 

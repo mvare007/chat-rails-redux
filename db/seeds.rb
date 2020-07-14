@@ -12,11 +12,22 @@ User.destroy_all
 
 # Users
 
-puts "Creating 5 users"
+puts "Creating 60 users"
 
-5.times do
+nicknames = [
+              Faker::Games::Pokemon.name,
+              Faker::JapaneseMedia::DragonBall.character,
+              Faker::Movies::LordOfTheRings.character,
+              Faker::TvShows::Simpsons.character,
+              Faker::TvShows::BreakingBad.character,
+              Faker::TvShows::FamilyGuy.character,
+              Faker::Movies::HarryPotter.character,
+              Faker::DcComics.villain
+            ]
+
+60.times do
   User.create!(
-    email: Faker::Internet.email,
+    nickname: "#{nicknames.sample }_#{rand(10..9999)}",
     password: "123456"
   )
 end
@@ -24,7 +35,7 @@ end
 
 # Channels
 
-puts "Creating 3 channels"
+puts "Creating 2 default channels"
 
 Channel.create!(
   name: "General"
@@ -34,19 +45,49 @@ Channel.create!(
   name: "Lisbon"
 )
 
-Channel.create!(
-  name: "Ruby"
-)
+puts "Creating 18 channels"
+
+locations = [
+              Faker::TvShows::Simpsons.location,
+              Faker::TvShows::FamilyGuy.location,
+              Faker::Movies::LordOfTheRings.location,
+              Faker::Games::Fallout.location,
+              Faker::Movies::HarryPotter.location,
+              Faker::Games::ElderScrolls.region,
+              Faker::TvShows::GameOfThrones.city,
+              Faker::Games::Zelda.location,
+              Faker::Nation.capital_city
+            ]
+
+18.times do
+  Channel.create!(
+    name: "#{locations.sample }_#{rand(10..999)}"
+  )
+end
 
 
 # Messages
 
-puts "Creating 10 Messages"
+puts "Creating 120 Messages"
 
-10.times do
-  Message.create!(
+messages = [
+              Faker::TvShows::Simpsons.quote,
+              Faker::ChuckNorris.fact,
+              Faker::TvShows::Seinfeld.quote,
+              Faker::TvShows::FamilyGuy.quote,
+              Faker::Games::Fallout.quote,
+              Faker::TvShows::SouthPark.quote,
+              Faker::TvShows::DumbAndDumber.quote,
+              Faker::Quote.famous_last_words,
+              Faker::GreekPhilosophers.quote
+            ]
+
+120.times do
+  message = Message.new(
     user: User.all.sample,
     channel: Channel.all.sample,
-    content: Faker::ChuckNorris.fact
+    content: messages.sample,
   )
+  message.author = message.user.nickname
+  message.save!
 end

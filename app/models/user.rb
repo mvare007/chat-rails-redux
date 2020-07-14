@@ -5,4 +5,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :messages
+
+  validates :nickname, presence: true, uniqueness: true
+
+  def email_required?
+    false
+  end
 end

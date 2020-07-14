@@ -109,8 +109,8 @@ a {
 }
 
 .channel:hover {
-  background-color: #1064A3 !important;
-  opacity: 0.9;
+  background-color: #1064A3;
+  opacity: 0.8;
 }
 
 
@@ -180,3 +180,14 @@ button {
 .break-text p {
   word-wrap: break-word;
 }
+
+/* Emoji Mart *****************************************************************/
+
+.getEmojiButton {
+  float: left;
+  border: none;
+  margin: 7px;
+  cursor: pointer;
+  font-size: 20px;
+}
+

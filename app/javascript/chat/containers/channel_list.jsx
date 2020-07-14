@@ -27,7 +27,7 @@ class ChannelList extends Component {
   render() {
     return (
       <div className="channels-container">
-        <span>Rails + Redux Chat</span>
+        <span>Slack Clone</span>
         <ul>
           {this.props.channels.map(this.renderChannel)}
         </ul>

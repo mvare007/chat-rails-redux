@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>ChatRailsRedux</title>
+    <title>Slack Clone</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -12,12 +12,17 @@
   </head>
 
   <body>
-    <%= render 'shared/navbar' %>
+    <% unless action_name == 'new' %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+
     <%= render 'shared/flashes' %>
 
     <%= yield %>
     <%= yield :after_js %>
 
-    <%= render 'shared/footer' %>
+    <% unless action_name == 'new' %>
+      <%= render 'shared/footer' %>
+    <% end %>
   </body>
 </html>

@@ -1,1 +1,3 @@
-Rails app generated with [lewagon/rails-templates](https://github.com/lewagon/rails-templates), created by the [Le Wagon coding bootcamp](https://www.lewagon.com) team.
+A Simple Slack clone built with Ruby On Rails and React & Redux.
+
+https://slack-clone-mvare007.herokuapp.com/

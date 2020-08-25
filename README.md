@@ -9,6 +9,7 @@ A simple clone of Slack built with a Ruby On Rails backend API and with React & 
 * Bootstrap
 * Webpacker
 * Babel
+* PostgreSQL
 
 <br/>
 

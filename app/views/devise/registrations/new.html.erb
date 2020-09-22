@@ -14,15 +14,12 @@
           <%= f.input :nickname,
                       required: true,
                       autofocus: true,
-                      input_html: { autocomplete: "nickname" }
+                      input_html: { value: "#{Faker::Games::Pokemon.name.gsub(/\s+/, '')}_#{rand(0..999)}" }
                       %>
           <%= f.input :password,
                       required: true,
                       hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length),
-                      input_html: { autocomplete: "new-password" } %>
-          <%= f.input :password_confirmation,
-                      required: true,
-                      input_html: { autocomplete: "new-password" } %>
+                      input_html: { autocomplete: "new-password", value: "123456" } %>
         </div>
 
         <div class="form-actions">

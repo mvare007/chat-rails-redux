@@ -6,7 +6,7 @@ class User < ApplicationRecord
 
   has_many :messages
 
-  validates :nickname, presence: true, uniqueness: true
+  validates :nickname, presence: true, uniqueness: [true, { case_sensitive: false }]
 
   def email_required?
     false
@@ -16,12 +16,8 @@ class User < ApplicationRecord
     @login || self.nickname
   end
 
-  def self.find_for_database_authentication(warden_conditions)
-    conditions = warden_conditions.dup
-    if login = conditions.delete(:login)
-      where(conditions.to_h).where(["lower(username) = :value OR lower(email) = :value", { :value => login.downcase }]).first
-    elsif conditions.has_key?(:nickname)
-      where(conditions.to_h).first
-    end
-  end
+def self.find_for_database_authentication(warden_conditions)
+  status = 'active'
+  where(:nickname => warden_conditions[:nickname], :record_status => warden_conditions[:status]).first
+end
 end
